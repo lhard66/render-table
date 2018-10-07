@@ -48,11 +48,11 @@ export default {
     },
   },
   watch: {
-    data: {
-      handler () {
-        this.makeRows();
-      },
-      deep: true,
+    data () {
+      this.makeRows();
+      // 找出排序列
+      const sortedColumn = this.currentColums.find(col => col._sortType !== 'normal');
+      if (sortedColumn) this.handleSort(sortedColumn._index, sortedColumn._sortType);
     },
   },
   render (h) {
@@ -65,21 +65,21 @@ export default {
           h('span', col.name),
           h('a', {
             'class': {
-              'sort-type': col._sortType === 'asc'
+              'sort-type': col._sortType === 'desc'
             },
             on: {
               click: () => {
-                this.handleSort(index);
+                this.handleSort(index, 'desc');
               },
             },
           }, '↑'),
           h('a', {
             class: {
-              'sort-type': col._sortType === 'desc',
+              'sort-type': col._sortType === 'asc',
             },
             on: {
               click: () => {
-                this.handleSort(index, 'desc');
+                this.handleSort(index);
               },
             },
           }, '↓'),
