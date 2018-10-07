@@ -47,6 +47,14 @@ export default {
       });
     },
   },
+  watch: {
+    data: {
+      handler () {
+        this.makeRows();
+      },
+      deep: true,
+    },
+  },
   render (h) {
     const ths = [];
     const trs = [];
