@@ -62,7 +62,7 @@ export default {
       else if (data.type === 'text') return TextItem;
       else throw new Error('type 类型错误！');
     }
-
+    console.log(context);
     return h(
       getComp(), {
         props: {
