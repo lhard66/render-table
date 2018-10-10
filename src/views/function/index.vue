@@ -1,8 +1,7 @@
 <template>
   <div>
     <smart-item :data="data">
-      <p slot="foo">first</p>
-      <p>second</p>
+      <p slot="foo">first</p><p>second</p>
     </smart-item>
     <button @click="change('img')">切换为图片组件</button>
     <button @click="change('video')">切换为视频组件</button>

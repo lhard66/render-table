@@ -40,7 +40,8 @@ let TextItem = {
   render: function (h) {
     return h('div', [
       h('p', '纯文本组件'),
-      h('p', this.data.text)
+      h('p', this.data.text),
+      this.$slots.default
     ])
   }
 };
@@ -68,8 +69,14 @@ export default {
         props: {
           data: context.props.data,
         }
-      },
-      context.children,
+      }, [
+        context.children,
+        // context.slots().default,
+        // context.slots().foo,
+        // children 会给你两个段落标签
+        // 而 slots().default 只会传递第二个匿名段落标签，slots().foo 会传递第一个具名段落标签。
+        // 同时拥有 children 和 slots() ，因此你可以选择让组件通过 slot() 系统分发或者简单的通过 children 接收，让其他组件去处理。
+      ]
     )
   }
 }
